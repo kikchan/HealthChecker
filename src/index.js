@@ -63,7 +63,7 @@ async function start() {
       if (response.data?.online === true) {
         return res.status(200).json(response.data);
       } else {
-        return res.status(404).json(response.data);
+        return res.status(404).json(null);
       }
     } catch (e) {
       return res.status(404).json({ error: "Request failed" });
