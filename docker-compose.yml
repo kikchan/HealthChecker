@@ -2,8 +2,9 @@ services:
   health-api:
     build: .
     container_name: health-checker-api
+    restart: always
     env_file:
       - .env
     ports:
-      - "2008:3000"
-    restart: always
+      - "2008:2008"
+      - "2009:2009"

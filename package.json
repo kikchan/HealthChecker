@@ -1,9 +1,9 @@
 {
   "name": "health-checker-api",
-  "version": "1.0.0",
-  "main": "src/index.js",
+  "version": "1.1.0",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/api.js",
+    "start:ui": "node src/ui.js"
   },
   "dependencies": {
     "axios": "^1.7.7",

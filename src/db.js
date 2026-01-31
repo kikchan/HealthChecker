@@ -13,22 +13,17 @@ async function initDB() {
   });
 
   await pool.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME}\`;`);
-
   await pool.query(`USE \`${process.env.DB_NAME}\`;`);
 
-  await pool.query(`
-    CREATE TABLE IF NOT EXISTS services (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      service_name VARCHAR(255) UNIQUE NOT NULL,
-      url VARCHAR(1000) NOT NULL,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    );
-  `);
+  await pool.query(`CREATE TABLE IF NOT EXISTS services (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    service_name VARCHAR(255) UNIQUE NOT NULL,
+    url VARCHAR(1000) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  );`);
 }
 
-function getPool() {
-  return pool;
-}
+function getPool() { return pool; }
 
 module.exports = { initDB, getPool };
