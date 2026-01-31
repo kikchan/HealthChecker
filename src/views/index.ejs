@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Health Checker Services</title>
+  <style>
+    body { font-family: Arial; padding: 40px; background: #f5f5f5; }
+    table { background: white; border-collapse: collapse; width: 100%; }
+    th, td { padding: 8px; border: 1px solid #ddd; }
+    input { padding: 4px; }
+    button { padding: 6px 10px; }
+    form.inline { display: inline; }
+  </style>
+</head>
+<body>
+  <h2>Add Service</h2>
+  <form method="POST" action="/services">
+    <input name="service_name" placeholder="Name" required />
+    <input name="url" placeholder="URL" required />
+    <button>Add</button>
+  </form>
+
+  <h2>Services</h2>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>URL</th>
+      <th>Actions</th>
+    </tr>
+    <% services.forEach(s => { %>
+      <tr>
+        <form method="POST" action="/services/<%= s.id %>/update">
+          <td><%= s.id %></td>
+          <td><input name="service_name" value="<%= s.service_name %>" /></td>
+          <td><input name="url" size="50" value="<%= s.url %>" /></td>
+          <td>
+            <button>Save</button>
+        </form>
+        <form method="POST" action="/services/<%= s.id %>/delete" class="inline">
+            <button type="submit">Delete</button>
+        </form>
+        <a href="/check/<%= s.service_name %>" target="_blank">Check</a>
+          </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
