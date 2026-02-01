@@ -10,6 +10,10 @@ const PORT = process.env.API_PORT || 3000;
   await initDB();
   const pool = getPool();
 
+  app.get('/', (_, res) => {
+    res.status(200).json({ message: "API is running" });
+  });
+
   app.get('/check/:service_name', async (req, res) => {
     const [rows] = await pool.query(
       "SELECT url FROM services WHERE service_name=?",
